@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=EUC-jp">
+  <link href="../ex.css" rel="stylesheet" type="text/css">
+  <title>Programming C ex03</title>
+</head>
+
+<body>
+<h1>プログラミングＣ<br>
+第3回 演習問題</h1>
+
+<table noborder="" align="center" width="60%">
+  <tbody>
+    <tr>
+      <td width="40%">
+      <div class="basic" align="center">
+      <a href="#prog01">問題１</a>
+      <a href="#prog02">問題２</a>
+      </div>
+      </td>
+      <td width="40%">
+      <div class="advance" align="center">
+      <a href="#prog03">問題３</a>
+      <a href="#prog04">問題４</a>
+      </div>
+      </td>
+      <td width="20%">
+      <div class="bonus" align="center">
+      <a href="#prog05">問題５</a>
+      </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+
+<h2>最初に</h2>
+<p class="chu">
+<code>/home/course/prog1/public_html/2014/ex/ex03/</code>より、以下のファイルをコピーしておくこと。<br>
+<code>read.dat, coord.in, data.in, data.out, text2.in </code><br>
+<code>number00.in number01.in number02.in number03.in</code>
+</p>
+
+
+
+<p class="section">基本問題(50点)</p>
+<div class="basic">
+<p class="toi"><a name="prog01">演習問題１（ファイル出力）</a></p>
+
+<p>以下のプログラムを入力して、<br>
+<ul>
+<li>文の意味</li>
+<li>どのような動作をさせているか</li>
+</ul>
+  などについてコメントを付加しなさい。</p>
+<p>
+  main 関数の中の全ての行（ }など記号のみの行は除く）にコメントを付けること。
+  if 文には、どんな時に条件が真になるのかもコメントに記載すること。</p>
+  (提出ファイル名: <em>prog01.c</em>)<br>
+  <br>
+  以下のプログラムは <a href="read.dat">read.dat</a> を開き、その内容を別のファイルにコピーするものである。 </p>
+<pre class="skel"><img src="prog01.gif" border="0" ></pre>
+コメント付加の例：<br>
+<pre class="skel"><img src="comment_sample.png" border="0" ></pre>
+</div>
+
+
+<div class="basic">
+<p class="toi"><a name="prog02">演習問題２（ファイル出力）</a></p>
+
+<p>prog01.c を変更して、以下のようなプログラムを作成せよ。<br>
+(提出ファイル名: <em>prog02.c</em>)<br>
+</p>
+
+<p>
+<a href="data.in">data.in</a> をファイルとして読み込み、 
+<ol>
+<li>大文字を小文字に変換する </li>
+<li>小文字を大文字に変換する</li> 
+<li>大文字は小文字に、小文字は大文字に入れ替える </li>
+</ol>
+<p>各処理から出力される３つのデータを、順にファイル <em>prog02.out</em> に書き込むこととする。<br>
+<p>
+  入力データの文字数は1000文字より少ないものとする。 <br>
+  また、読み込みは何度も繰り返さず、１回だけ行うものとする
+  （読み込んだデータは文字配列（ハンドアウトLec03-19, 20参照）に格納しておく）。
+  大文字化、小文字化等は、自分で関数を作って使用することとするが、
+  過去の演習で作成した関数を修正して再利用してもよい（但し自分で作ったものに限る）。<br>
+</p>
+</div>
+
+
+
+<p class="section">応用問題(50点)</p>
+
+<div class="advance">
+<P class="toi"><A NAME="prog03">演習問題３（ファイル入出力）</a></P>
+  <p>与えられた３次元座標データのうち、<br>
+　・ 原点から最も近いものと、<br>
+　・ 原点から最も遠いもの<br>
+  を発見するプログラムを以下の手順で作成する。</p>
+
+  まず、３次元空間の座標 (x, y, z) が入ったデータファイル
+      「<a href="coord.in">coord.in</a>」をダウンロードしておく。
+  <ol>
+    <li>このファイルからデータを読み込んで、２次元配列に格納する。<br>
+      ※ 仕様として、3次元座標データは最大9個までとする。<br>
+      ヒント: 
+      double型の10×4の配列 (x, y, z, 原点からの距離) とし、
+      [n][0], [n][1], [n][2] にそれぞれ x, y, z 座標を代入する。</li>
+
+    <li>原点 (0, 0, 0) から座標 (x, y, z) までのユークリッド距離、すなわち<br> 
+    「(x<sup>2</sup> + y<sup>2</sup> + z<sup>2</sup>) の平方根」<br>
+    を計算し、４番目の要素 [n][3] にそれぞれ代入する。<br>
+    平方根の計算にはライブラリ関数 sqrt( ) を使う。使う時の注意事項は以下の通り。<br>
+      ・ sqrt( ) 関数を使う場合, ヘッダファイル &lt;math.h&gt; 
+      をインクルードする （例: #include &lt;math.h>）。<br>
+      ・ また、コンパイルの際にオプション、「-lm」をつける
+       (例: gcc prog03.c -lm のように）。 </li>
+
+    <li>入力されたデータの中で最も近い（距離の小さい）点と最も遠い点を 
+      <em>coord.out</em> に書き出す。</li>   
+  </ol>
+
+(提出ファイル名: <em>prog03.c</em>)<br>
+</p>
+
+<pre>
+（<a href="coord.in">coord.in</a>の内容）
+<font color="#0000ff">
+1.9 3.4 4.3
+0.7 1.0 2.1
+1.2 3.4 6.1
+3.1 1.9 0.5
+0.3 5.2 2.8
+3.5 2.1 0.2
+4.4 2.2 1.1
+2.7 2.1 2.3
+3.1 1.2 1.3</font>
+
+（coord.outの内容）
+<font color="#0000ff">
+max : 1.2 3.4 6.1 (7.1)
+min : 0.7 1.0 2.1 (2.4)
+</font>
+</PRE>
+</div>
+
+
+<div class="advance">
+<P class="toi"><A NAME="prog04">演習問題４（ファイル入出力）</a></P>
+<p>
+  <ol>
+    <li>今週のハンドアウトの最後に、テキストファイル
+(in4.data) を読み取って逆から表示するプログラムがある。
+これをファイル<a href="data.in">data.in</a>から読み込み、mydata.outに書出すように修正せよ。
+     なお、最後の行の後に改行を挿入する。<br>
+      (提出ファイル名: <em>prog04a.c</em>) <br>  
+      (ハンドアウトのプログラムは
+/home/course/prog1/public_html/2014/lec/source/lec03-{7,7b}.c にある。)</li>
+
+    <li>自分の作成した出力結果 (mydata.out) と解答 (data.out) のファイルをプログラム中で開き、先頭から１文字ずつ比較して、二つのファイルの内容が一致するかどうかを調べて結果を表示するプログラムを作成せよ。<br> 
+      (提出ファイル名: <em>prog04b.c</em>) <br>
+      </li>  
+  </ol>
+
+  <pre>（<a href="data.in">data.in</a> の内容）
+SPIM/SAL is a port, to the Apple Macintosh Personal Computer, of SPIM, 
+a MIPS R2000/3000 simulator that was written by James Larus for 
+instructional use at the University of Wisconsin Computer Sciences 
+Departement. Three other versions of SPIM exist: a character-cell 
+terminal version for Unix called &quot;spim&quot;, an X windows version for 
+Unix called &quot;xspim&quot;, and a version for PC's running WIN32S, also 
+called &quot;SPIM/SAL.&quot; These versions are not identical, but they are 
+descended from a common ancestor and offer the same general 
+functionality. See the end of this document for information about 
+obtaining the different versions of SPIM.
+</pre>
+  <pre>（<a href="data.out">data.out</a>の内容）
+.MIPS fo snoisrev tnereffid eht gniniatbo
+tuoba noitamrofni rof tnemucod siht fo dne eht eeS .ytilanoitcnuf
+lareneg emas eht reffo dna rotsecna nommoc a morf dednecsed
+era yeht tub ,lacitnedi ton era snoisrev esehT &quot;.LAS/MIPS&quot; dellac
+osla ,S23NIW gninnur s'CP rof noisrev a dna ,&quot;mipsx&quot; dellac xinU
+rof noisrev swodniw X na ,&quot;mips&quot; dellac xinU rof noisrev lanimret
+llec-retcarahc a :tsixe MIPS fo snoisrev rehto eerhT .tnemetrapeD
+secneicS retupmoC nisnocsiW fo ytisrevinU eht ta esu lanoitcurtsni
+rof suraL semaJ yb nettirw saw taht rotalumis 0003/0002R SPIM a
+,MIPS fo ,retupmoC lanosreP hsotnicaM elppA eht ot ,trop a si LAS/MIPS
+</pre>
+prog04b.cの実行例：
+<pre>
+% ./a.out 
+Two files are identical. （ファイルが一致した場合）
+% ./a.out 
+Two files are different at *** （ファイル不一致：何バイト目で相違が見つかったか表示）
+</pre>
+</div>
+
+
+
+<p class="section">ボーナス問題(10点)</p>
+<div class="bonus">
+<P class="toi"><A NAME="prog05">演習問題５（ファイルの入出力）</a></P>
+
+<p>
+昇順（小さい順）に並んだ数字が入っているファイルが2つある。
+この2つのファイルに入っている数字をすべてあわせて１つにし、
+昇順に並べて標準出力に出力するプログラムを作成する。
+２つのファイルの長さは異なり、値はいくつ入っているかわからない。
+但し、それぞれの値は正の数であり、int型に格納できる大きさであるとする。
+</p>
+
+<p>
+2つのファイルのファイル名は、コマンド名の後に与えることとする。
+<pre>
+./a.out number00.in number01.in
+</pre>
+</p>
+
+<p>注：実行ファイル名を a.out 以外にするには、gccに「-o 名前」を付ける。
+プログラミング入門ハンドアウトLec13-2を見よ。（プログラムの中身を示す「merge」等がよいだろう）
+また、実行例のようにコマンドラインオプションでファイル名などを読み込む方法は、今後第６回で学ぶ
+（Lec06-11,-12, -13を見よ）。
+</p>
+
+<center>
+<table border="1" cellspacing="0">
+<caption align="top">入出力例</caption>
+<tr>
+<td>number00.in</td><td>number01.in</td><td>出力結果</td>
+</tr>
+<tr align="right" valign="top">
+<td>
+3<br>4<br>6<br>22<br>30<br>38<br>65<br>80<br>85<br>88<br>90<br>92<br>94<br>
+</td>
+<td>
+7<br>10<br>11<br>24<br>40<br>52<br>65<br>80<br>
+</td>
+<td>
+3<br>4<br>6<br>7<br>10<br>11<br>22<br>24<br>30<br>38<br>40<br>
+52<br>65<br>65<br>80<br>80<br>85<br>88<br>90<br>92<br>94<br>
+</td>
+</tr>
+</table>
+</center>
+
+プログラムのテストは 
+<a href="number00.in">number00.in</a>、
+<a href="number01.in">number01.in</a>、
+<a href="number02.in">number02.in</a>、
+<a href="number03.in">number03.in</a>
+を組み合せて行うこと。組合せは６通りある。<br>
+(提出ファイル名: <em>prog05.c</em> )
+
+<h3>ヒント</h3>
+<p>
+2つのファイルは昇順に並んでいるので、
+まず、両方のファイルから一つずつ数字を読み込む。
+ループの中で、
+読み込んだ2つの数字の小さいほうを出力するとともに、
+出力した数字を持っていたファイルからもう一つ数字を読み込む。
+これを繰り返していると、ファイルの終端に到達したときに
+片方のファイルの読み込に失敗する。
+
+
+失敗はfscanfで検出し、このファイルからの読み込みをやめる
+（fscanfは入力が終了して読み込めない場合に負の値（EOF）を返す
+ので、これを利用するとよい）。
+両方のファイルの読み込みに失敗したら処理の終了である。
+</p>
+
+<h3>結果の確認の方法について</h3>
+<p>
+出力結果は大きくなるので、リダイレクトを用いると、
+結果を確認しやすい。
+<pre>
+./a.out number00.in number01.in > myresult.out
+</pre>
+この例ではファイル「myresult.out」に結果が出力される。
+</p>
+
+<p>
+Unixコマンドで、作成するプログラムと同じ結果を得るためには、
+<pre>
+cat number00.in number01.in | sort -n > cmdresult.out
+</pre>
+とするとファイル「cmdresult.out」に結果が入る。
+</p>
+
+<p>
+自分のプログラムに間違いがないかを確かめるためには、
+これら二つのファイルを比較すればよい。目で比較すると大変なので、
+以下のコマンドを利用する。
+<pre>
+diff myresult.out cmdresult.out
+</pre>
+diffは2つのファイルの内容が異なっていた場合、
+異なる部分の位置と内容を標準出力に出力する。
+内容が一致していた場合は何も出力しない。
+つまり、上のコマンドを実行した結果、
+何も出力されない場合は自分のプログラムが正しいことになる。
+</p>  
+
+</div>
+
+<iframe src="../subinst.html" class="notice"><em>iFrameをサポートしていないブラウザです</em></iframe>
+
+<p class="footer" align="right">
+[ Last Updated: 2013年10月02日 by Programming C teaching group]
+</p>
+</body>
+</html>

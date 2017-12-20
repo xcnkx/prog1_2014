@@ -1,0 +1,2 @@
+gcc -o prog04.c prog04_2.c prog04_3.c prog04_4.c prog04_5.c prog04_6.c
+./prog04.c

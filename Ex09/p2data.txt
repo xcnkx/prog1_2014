@@ -1,0 +1,10 @@
+Yamada  1994  3 31 0
+Abe	1994  4  1 1
+Iida	1994  4  2 1
+Azuma	1994 12  2 1
+Tanaka  1993  5  5 0
+Kondo   1994 12  1 0
+Hara    1994  2  4 1
+Sato    1995  8  3 0
+Shima   1994 10 22 1
+Matsuda 1992  1 24 1

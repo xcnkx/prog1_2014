@@ -1,0 +1,6 @@
+単体テストの場合
+gcc -DDEBUG main02.c
+gcc -DDEBUG calc02.c
+
+統合テストの場合
+gcc main02.c calc02.c

@@ -1,0 +1,8 @@
+input_planetの戻値が0の場合
+gcc -DTEST0 prog03_main.c
+
+input_planetの戻値が1の場合
+gcc -DTEST1 prog03_main.c
+
+prog03_main.cとprog03_iput.cを組合せて全体で動作確認を行う場合
+gcc prog03_main.c prog03_input.c

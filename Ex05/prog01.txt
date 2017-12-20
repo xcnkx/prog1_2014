@@ -1,0 +1,65 @@
+\\以下実行環境 Solaris
+
+prog01a.c                                
+
+0 feffe5e0 11                
+1 feffe5e4 22
+2 feffe5e8 33
+3 feffe5ec 44
+
+feffe5e0
+\\一回のループごとに出力されるアドレスの差（増分） 4
+
+prog01b.c
+
+0 feffe5e0 11
+1 feffe5e4 22
+2 feffe5e8 33
+3 feffe5ec 44
+
+feffe5e0
+\\一回のループごとに出力されるアドレスの差（増分） 4
+
+prog01c.c
+
+0 feffe5ec a
+1 feffe5ed b
+2 feffe5ee c
+3 feffe5ef d
+
+feffe5ec
+\\一回のループごとに出力されるアドレスの差（増分） 1
+
+prog01d.c
+
+0 feffe5e0 ab
+1 feffe5e4 cd
+2 feffe5e8 ef
+3 feffe5ec gh
+
+feffe5e4
+\\一回のループごとに出力されるアドレスの差（増分） 4
+
+prog01e.c
+
+0 feffe5c8 0.001000
+1 feffe5d0 0.000100
+2 feffe5d8 0.000010
+3 feffe5e0 0.000001
+
+feffe5c8
+\\一回のループごとに出力されるアドレスの差（増分） 8
+
+prog01f.c
+
+0 feffe5c4 abc
+1 feffe5ce def
+2 feffe5d8 ghi
+3 feffe5e2 lmn
+
+feffe5c4
+\\一回のループごとに出力されるアドレスの差（増分）10
+
+考察
+
+型の大きさ分だけアドレスが離れていることがわかる。
